@@ -1,0 +1,8 @@
+::ng-deep ng-fullcalendar.fc.fc-unthemed.fc-ltr td {
+    height: auto;
+}
+
+.alert-text {
+    font-size: 12px;
+    color: gray;
+}

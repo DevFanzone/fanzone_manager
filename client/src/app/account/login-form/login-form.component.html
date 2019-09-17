@@ -1,0 +1,44 @@
+<div class="container py-4">
+    <div class="card w-75 m-auto">
+        <div class="card-body color-background">
+            <div class="h-100 d-flex">
+                <div class="h-100 w-50 text-center">
+                    <div class="position-content">
+                        <i class="fa fa-user-o icon-class color-text-primary"></i>
+                        <div>
+                            <h3 class="color-text">Content Manager</h3>
+                            <h1 class="color-text text-size">FanZone</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-50 d-flex left-mobile">
+                    <div class="color-primary barPrimary-class"></div>
+                    <div class="color-secundary barSecundary-class"></div>
+                </div>
+
+                <div class="container-form">
+                    <form #f="ngForm" novalidate (ngSubmit)="login(f)">
+
+                        <div class="form-group">
+                            <input id="username" type="text" required name="username" [ngModel]="credentials.username"
+                                   #username="ngModel" tmFocus placeholder="User" class="form-control input-login">
+                        </div>
+
+                        <div class="form-group">
+                            <input id="password" type="password" required name="password" class="form-control input-login"
+                                   placeholder="Password" ngModel>
+                        </div>
+
+                        <div class="form-group float-right">
+                            <button type="submit" class="btn-login color-primary"
+                                    [disabled]="isRequesting">Login
+                            </button>
+                            <app-spinner [isRunning]="isRequesting"></app-spinner>
+                        </div>
+                    </form>
+                    <br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

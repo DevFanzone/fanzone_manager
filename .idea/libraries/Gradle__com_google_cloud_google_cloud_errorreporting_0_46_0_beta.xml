@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.cloud:google-cloud-errorreporting:0.46.0-beta">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/google-cloud-errorreporting/0.46.0-beta/341b827a189456b5ad7fefef29f192052bbe48ca/google-cloud-errorreporting-0.46.0-beta.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/google-cloud-errorreporting/0.46.0-beta/3b7e9e851c55f0e61aae7e206179b2e087bc296f/google-cloud-errorreporting-0.46.0-beta-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

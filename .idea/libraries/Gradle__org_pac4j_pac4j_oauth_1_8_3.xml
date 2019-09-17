@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.pac4j:pac4j-oauth:1.8.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.pac4j/pac4j-oauth/1.8.3/3e951e5b868e5771fd608f545c9b2218876bad9c/pac4j-oauth-1.8.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.pac4j/pac4j-oauth/1.8.3/c0933b9d7e5af362eed82fc4c9851c7277a91d29/pac4j-oauth-1.8.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

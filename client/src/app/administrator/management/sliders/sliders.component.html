@@ -1,0 +1,156 @@
+<br>
+<div class="container-fluid">
+    <loader [loaderActive]="loaderActive"></loader>
+    <button (click)="back()" class="btn-back"><i class="fa fa-arrow-left"></i> Back</button>
+    <div class="search-content">
+        <input id="search" [(ngModel)]="search" type="search" placeholder="Filter" name="search"
+               class="form-control color-background search">
+        <span class="fa fa-search search-icon"></span>
+    </div>
+    <button (click)="openForm()" class="btn-add color-primary">Add Slider <i class="fa fa-plus-square"></i></button>
+
+    <div class="w-25 d-flex pt-4" style="min-width: 18rem">
+        <div class="circular-landscape-mini shadow">
+            <img class="card-img-top" src="{{player.foto}}" onError="this.src='assets/images/noimg-player.png';"
+                 alt="Card image">
+        </div>
+
+        <div class="pt-4 pl-2">
+            <p class="color-text text-perfil-mobile">
+                {{player.nombre}} <br>
+                {{player.email}} <br>
+            </p>
+        </div>
+    </div>
+
+    <br>
+    <table class="table color-borde-table color-background-table w-99 w-100 w-lg-75 m-auto">
+        <tbody>
+        <tr>
+            <th class="text-center color-borde-table color-text-primary" style="width: 55%">Name</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 10%">Status</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 15%">Add link</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 20%; min-width: 6rem;">Action</th>
+        </tr>
+        <tr *ngFor="let slider of data | orderBy:'estatus' : false | filter:search | paginate: { itemsPerPage: 4, currentPage: p }">
+            <td class="text-center color-borde-table color-text">{{slider.nombre}}</td>
+            <td class="text-center color-borde-table">
+                <i *ngIf="slider.estatus=='0' " class="fa fa-circle status-class"></i>
+                <i *ngIf="slider.estatus=='1' " class="fa fa-circle status-class-error"></i>
+            </td>
+            <td class="text-center color-borde-table">
+                <button type="button" class="btn-add-link" (click)="openUrlImgMap(slider)" ><i class="fa fa-link"></i></button>
+            </td>
+            <td class="text-center color-borde-table color-text">
+                <i class="fa fa-pencil pr-3" style="font-size:20px;cursor: pointer;" ngbTooltip="Editar" placement="top" (click)="openForm(slider)"></i>
+                <i class="fa fa-trash" style="font-size:20px;cursor: pointer;" ngbTooltip="Eliminar" placement="top" (click)="openDeleteSlider(slider)"></i>
+            </td>
+        </tr>
+
+        <tr *ngIf="data && data.length <= 0">
+            <td colspan="4">no records...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="text-right w-75 m-auto">
+        <pagination-controls autoHide="true" responsive="true" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <modal backdrop="static" #modalRegister>
+        <modal-header class="color-primary" [show-close]="false">
+            <h4 class="modal-title">{{sliderModel.id ? 'UPDATE SLIDER' : 'NEW SLIDER'}}</h4>
+
+            <div class="toggle-zoom" *ngIf="sliderModel.id">
+                <input type="checkbox" class="toggle" id="toggle" [checked]="sliderModel.estatus == '0'"
+                       (change)="updateSlider()"/>
+                <label for="toggle">
+                    <span class="on">ENABLED</span>
+                    <span class="off">DISABLED</span>
+                </label>
+            </div>
+        </modal-header>
+        <modal-body class="color-background form-body pt-3">
+            <div class="row">
+                <div *ngIf="!sliderModel.id" class="col-md-5">
+                    <div class="text-center">
+                        <img src="assets/images/noimg.png" class="img-responsive" alt="...">
+                    </div>
+                    <label class="media-dimension">* The recommended resolution is 1904x342 or higher</label>
+                    <label for="file-upload" class="custom-file-uploades color-text-primary">
+                        <i class="fa fa-cloud-upload"></i> Select a file to upload
+                    </label>
+                    <input id="file-upload" type="file" (change)="onchangueFiles($event);"/>
+                </div>
+
+                <div [ngClass]="sliderModel.id? 'col-md-12':'col-md-7'" class="pr-3">
+                    <br>
+                    <div class="w-25 d-flex" style="min-width: 18rem">
+                        <div class="circular-landscape-mini shadow">
+                            <img class="card-img-top" src="{{player.foto}}"
+                                 onError="this.src='assets/images/noimg-player.png';" alt="Card image">
+                        </div>
+
+                        <div class="pt-4 pl-2">
+                            <p class="color-text">
+                                {{player.nombre}} <br>
+                                {{player.email}} <br>
+                            </p>
+                        </div>
+                    </div>
+                    <br><br>
+                    <form #formSlider="ngForm">
+                        <h4 class="color-text pl-3">Slider(s)</h4>
+                        <div style="overflow: auto; max-height: 18rem;" class="form-group">
+                            <div *ngIf="arrayElementos.length <= 0">
+                                <br>
+                                <img class="img-responsive-preview" src="assets/images/redaccion.png" alt="...">
+                                <br><br>
+                            </div>
+
+                            <div class="content-delete" *ngFor="let item of arrayElementos; let i = index">
+                                <i *ngIf="!sliderModel.id" (click)="deleteElement(i)"
+                                   class="fa fa-remove remove-item"></i>
+                                <img [src]="item.archivo" onError="this.src='assets/images/noimg-player.png';"
+                                     class="img-responsive-preview" alt="...">
+                                <br><br>
+                            </div>
+                        </div>
+
+                        <div class="form-group mx-sm-3 text-right">
+                            <button type="button" class="btn-cancel mr-2" [disabled]="isRequesting"
+                                    (click)="closeForm()">
+                                {{sliderModel.id ? 'CLOSE' : 'CANCEL'}} <i class="fa fa-remove"></i>
+                            </button>
+                            <button *ngIf="!sliderModel.id" type="button" class="btn-done mr-4"
+                                    [disabled]="isRequesting" (click)="saveSliders()">
+                                DONE <i class="fa fa-save"></i>
+                            </button>
+                            <app-spinner [isRunning]="isRequesting"></app-spinner>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </modal-body>
+    </modal>
+
+    <modal class="modal-confirmation" backdrop="static" #confirmation>
+        <modal-body class="color-background color-borde-modal pt-3">
+            <div class="row">
+                <div class="col-md-10 offset-md-1 text-center">
+                    <i class="fa fa-trash color-text-secundary" style="font-size:60px;"></i><br>
+                    <label style="font-size:18px; color: black; font-weight: bold;">Important</label><br>
+                    <label style="font-size:12px; color: #6D6E6E;">{{successMensaje}}</label><br><br>
+                    <button type="button" class="btn-cancel" (click)="cancelDeleteSlider()">CANCEL</button>
+                    <button type="button" class="btn-done" (click)="confirmationDeleteSlider()">DONE</button>
+                </div>
+            </div>
+        </modal-body>
+    </modal>
+</div>

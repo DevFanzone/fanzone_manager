@@ -1,0 +1,60 @@
+.text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.form-control {
+    padding-right: 30px;
+}
+
+.form-control + .fa {
+    position: absolute;
+    right: 0;
+    padding: 8px 27px;
+}
+
+.card-body, .card {
+    box-shadow: unset;
+    border: transparent;
+}
+
+.container-player {
+    cursor: pointer;
+    border-radius: 2rem;
+    width: 12.3rem;
+    min-height: 16rem;
+}
+
+.container-player:hover .edit-icon {
+    opacity: 1;
+}
+
+.edit-icon {
+    left: 85%;
+    padding-right: 0rem;
+    padding-top: 0.5rem;
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.btn-enter {
+    padding-top: 2px;
+    cursor: pointer;
+    color: #fff;
+    width: 11rem;
+    height: 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 2rem;
+    border: transparent;
+    box-shadow: 1px 1px 5px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-enter:hover {
+    box-shadow: 1px 1px 9px 0 rgba(45, 54, 65, 0.75);
+}
+
+
+

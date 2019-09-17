@@ -1,0 +1,157 @@
+<br>
+<div class="container-fluid">
+    <loader [loaderActive]="loaderActive"></loader>
+    <button (click)="back()" class="btn-back"><i class="fa fa-arrow-left"></i> Back</button>
+    <div class="search-content">
+        <input id="search" type="search" placeholder="Filter" name="search" [(ngModel)]="search" class="form-control color-background search">
+        <span class="fa fa-search search-icon"></span>
+    </div>
+    <button (click)="openForm()" class="btn-add color-primary">Add Category <i class="fa fa-plus-square"></i></button>
+
+    <div class="w-25 d-flex pt-4" style="min-width: 18rem">
+        <div class="circular-landscape-mini shadow">
+            <img class="card-img-top" src="{{player.foto}}" onError="this.src='assets/images/noimg-player.png';" alt="Card image">
+        </div>
+
+        <div class="pt-4 pl-2">
+            <p class="color-text text-perfil-mobile">
+                {{player.nombre}} <br>
+                {{player.email}} <br>
+            </p>
+        </div>
+    </div>
+
+    <br>
+    <table class="table color-borde-table color-background-table w-99 w-100 w-lg-75 m-auto">
+        <tbody>
+        <tr>
+            <th class="text-center color-borde-table color-text-primary" style="width: 20%">Name</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 38%">Description</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 10%">Status</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 32%; min-width: 6rem;">Action</th>
+        </tr>
+        <tr *ngFor="let category of data | orderBy:'estatus' : false | filter:search | paginate: { itemsPerPage: 4, currentPage: p }">
+            <td class="text-center color-borde-table color-text">{{category.nombre}}</td>
+            <td class="text-center color-borde-table color-text">{{category.descripcion}}</td>
+            <td class="text-center color-borde-table">
+                <i *ngIf="category.estatus=='0' " class="fa fa-circle status-class"></i>
+                <i *ngIf="category.estatus=='1' " class="fa fa-circle status-class-error"></i>
+            </td>
+            <td class="text-center color-borde-table color-text">
+                <i class="fa fa-pencil pr-3" style="font-size:20px;cursor: pointer;" placement="top" (click)="openForm(category)"></i>
+                <i class="fa fa-trash" style="font-size:20px;cursor: pointer;" placement="top" (click)="openDeleteCategory(category)"></i>
+            </td>
+        </tr>
+
+        <tr *ngIf="data && data.length <= 0">
+            <td colspan="4">no records...</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-right w-75 m-auto">
+        <pagination-controls autoHide="true" responsive="true" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <modal backdrop="static" #modalRegister>
+        <modal-header class="color-primary" [show-close]="false">
+            <h4 class="modal-title">{{categoryModel.id != '0' && categoryModel.id != '' ? 'UPDATE CATEGORY' : 'NEW CATEGORY'}}</h4>
+
+            <div class="toggle-zoom" *ngIf="categoryModel.id != '0' && categoryModel.id != ''">
+                <input type="checkbox" class="toggle" id="toggle" [checked]="categoryModel.estatus == '0'" (change)="statusCategory()"/>
+                <label for="toggle">
+                    <span class="on">ENABLED</span>
+                    <span class="off">DISABLED</span>
+                </label>
+            </div>
+        </modal-header>
+        <modal-body class="color-background form-body pt-3">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-center pt-4">
+                                <img *ngIf="!isEditFoto" src="assets/images/noimg.png" class="img-responsive" alt="...">
+                                <img *ngIf="isEditFoto" src="{{categoryModel.imagen}}" onError="this.src='assets/images/noimg-player.png';" class="img-responsive" alt="...">
+                            </div>
+                            <label class="media-dimension">* The recommended resolution is 233×207 or higher</label>
+                            <label for="file-upload" class="custom-file-uploades color-text-primary">
+                                <i class="fa fa-cloud-upload"></i> Select a file to upload
+                            </label>
+                            <input id="file-upload" type="file" (change)="onchangueFile($event, false);"/>
+                        </div>
+                        <div class="col-12">
+                            <div class="text-center pt-4">
+                                <img *ngIf="!isEditSplash" src="assets/images/noimg.png" class="img-responsive" alt="...">
+                                <img *ngIf="isEditSplash" src="{{categoryModel.imgSplash}}" onError="this.src='assets/images/noimg-player.png';" class="img-responsive" alt="...">
+                            </div>
+                            <label class="media-dimension">* The recommended resolution is 2048x2732 or higher</label>
+                            <label for="file-upload-splash" class="custom-file-uploades color-text-primary">
+                                <i class="fa fa-cloud-upload"></i> Select a splash screen to upload
+                            </label>
+                            <input id="file-upload-splash" type="file" (change)="onchangueFile($event, true);"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 pr-0 pr-sm-5">
+                    <br>
+                    <div class="w-25 d-flex" style="min-width: 18rem">
+                        <div class="circular-landscape-mini shadow">
+                            <img class="card-img-top" src="{{player.foto}}" onError="this.src='assets/images/noimg-player.png';" alt="Card image">
+                        </div>
+
+                        <div class="pt-4 pl-2">
+                            <p class="color-text">
+                                {{player.nombre}} <br>
+                                {{player.email}} <br>
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+
+                    <form #formCategory="ngForm">
+                        <div class="form-group mx-sm-3">
+                            <label for="nombre">NAME</label>
+                            <input id="nombre" type="text" required name="nombre" [(ngModel)]="categoryModel.nombre" class="form-control" tmFocus>
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="description">DESCRIPTION</label>
+                            <textarea rows="6" id="description" type="text" required name="description" [(ngModel)]="categoryModel.descripcion" class="form-control">
+                            </textarea>
+                        </div>
+
+                        <br>
+                        <div class="form-group mx-sm-3 text-right">
+                            <button type="button" class="btn-cancel mr-2" [disabled]="isRequesting" (click)="closeForm()">
+                                CANCEL <i class="fa fa-remove"></i>
+                            </button>
+                            <button type="button" class="btn-done mr-4" [disabled]="isRequesting" (click)="saveCategory()">
+                                DONE <i class="fa fa-save"></i>
+                            </button>
+                            <app-spinner [isRunning]="isRequesting"></app-spinner>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </modal-body>
+    </modal>
+
+    <modal class="modal-confirmation" backdrop="static" #confirmation>
+        <modal-body class="color-background color-borde-modal pt-3">
+            <div class="row">
+                <div class="col-md-10 offset-md-1 text-center">
+                    <i class="fa fa-trash color-text-secundary" style="font-size:60px;"></i><br>
+                    <label style="font-size:18px; color: black; font-weight: bold;">Important</label><br>
+                    <label style="font-size:12px; color: #6D6E6E;">{{successMensaje}}</label><br><br>
+                    <button type="button" class="btn-cancel" (click)="cancelDeleteCategory()">CANCEL</button>
+                    <button type="button" class="btn-done" (click)="confirmationDeleteCategory()">DONE</button>
+                </div>
+            </div>
+        </modal-body>
+    </modal>
+</div>

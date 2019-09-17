@@ -1,0 +1,6 @@
+@media (max-width: 745px) {
+    .table {
+        overflow: auto;
+        display: block;
+    }
+}

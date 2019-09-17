@@ -1,0 +1,304 @@
+<br>
+<div class="container-fluid">
+    <loader [loaderActive]="loaderActive"></loader>
+    <button (click)="back()" class="ml-4 btn-back"><i class="fa fa-arrow-left"></i> Back</button>
+    <div class="search-content">
+        <input id="search" type="search" placeholder="Filter" name="search" [(ngModel)]="search"
+               class="form-control color-background search">
+        <span class="fa fa-search search-icon"></span>
+    </div>
+    <button (click)="openForm()" class="btn-new">New <i class="fa fa-plus-square"></i></button>
+    <button (click)="goCalendar()" class="btn-program color-primary">See Post Calendar <i class="fa fa-calendar"></i>
+    </button>
+
+    <div class="w-25 d-flex pt-4" style="min-width: 18rem">
+        <br>
+        <div class="circular-landscape-mini shadow">
+            <img class="card-img-top" src="{{player.foto}}" onError="this.src='assets/images/noimg-player.png';"
+                 alt="Card image">
+        </div>
+
+        <div class="pt-4 pl-2">
+            <p class="color-text text-perfil-mobile">
+                {{player.nombre}} <br>
+                {{player.email}} <br>
+            </p>
+        </div>
+    </div>
+
+    <br>
+    <table class="table color-borde-table color-background-table w-99 w-100 m-auto">
+        <tbody>
+        <tr>
+            <th class="text-center color-borde-table color-text-primary" style="width: 15%">Category</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 5%">Elements</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 15%">Hashtag</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 15%">Title</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 20%;min-width: 118px;">Date</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 5%">Status</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 10%;min-width: 91px;">Add link</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 15%;min-width: 5.5rem;">Action</th>
+        </tr>
+        <tr *ngFor="let post of data | orderBy:'estatus' : false : true | filter:search | paginate: { itemsPerPage: 4, currentPage: p }">
+            <td class="text-center color-borde-table color-text">{{post.nombreCategoria}}</td>
+            <td class="text-center color-borde-table color-text">{{post.numeroElementos}}</td>
+            <td *ngIf="post.tags" class="text-center color-borde-table color-text-primary">{{post.tags}}</td>
+            <td *ngIf="!post.tags" style="color: #0000007d" class="text-center color-borde-table">no hashtag</td>
+            <td *ngIf="post.tituloPost" class="text-center color-borde-table color-text">{{post.tituloPost}}</td>
+            <td *ngIf="!post.tituloPost" style="color: #0000007d" class="text-center color-borde-table">advertising</td>
+            <td class="text-center color-borde-table color-text">{{post.fechaPublicacion ? post.fechaPublicacion : post.fechaRegistro}}</td>
+            <td class="text-center color-borde-table">
+                <i *ngIf="post.estatus == '0' && post.publicar=='1'" class="fa fa-circle status-class" placement="top" ngbTooltip="Published"></i>
+                <i *ngIf="post.estatus=='1' " class="fa fa-circle status-class-error" placement="top" ngbTooltip="Disabled"></i>
+                <i *ngIf="post.estatus=='0' && post.publicar=='2'" class="fa fa-circle status-class-wait" placement="top" ngbTooltip="Scheduled for: {{post.fechaPublicacion}}"></i>
+            </td>
+            <td class="text-center color-borde-table">
+                <button type="button" class="btn-add-link" (click)="openUrlImgMap(post)" ><i class="fa fa-link"></i></button>
+            </td>
+            <td class="text-center color-borde-table color-text">
+                <i class="fa fa-pencil pr-3" style="font-size:20px;cursor: pointer;" placement="top" (click)="openForm(post)"></i>
+                <i class="fa fa-trash" style="font-size:20px;cursor: pointer;" placement="top" (click)="openDeletePost(post)"></i>
+            </td>
+        </tr>
+
+        <tr *ngIf="data && data.length <= 0">
+            <td colspan="8">no records...</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-right w-100 m-auto">
+        <pagination-controls autoHide="true" responsive="true" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <modal backdrop="static" #modalRegister>
+        <modal-header class="color-primary" [show-close]="false">
+            <h4 class="modal-title">{{redaccionModel.id ? 'UPDATE POST' : 'NEW POST'}}</h4>
+
+            <div class="toggle-zoom" *ngIf="redaccionModel.id">
+                <input type="checkbox" class="toggle" id="toggle" [checked]="redaccionModel.estatus == '0'" (change)="statusPost()"/>
+                <label for="toggle">
+                    <span class="on">ENABLED</span>
+                    <span class="off">DISABLED</span>
+                </label>
+            </div>
+        </modal-header>
+        <modal-body class="color-background form-body pt-3">
+            <div class="row">
+                <div class="col-md-6 color-borde-right">
+                    <br>
+                    <div class="w-25 d-flex" style="min-width: 18rem">
+                        <div class="circular-landscape-mini shadow">
+                            <img class="card-img-top" src="{{player.foto}}" onError="this.src='assets/images/noimg-player.png';" alt="Card image">
+                        </div>
+
+                        <div class="pt-4 pl-2">
+                            <p class="color-text">
+                                {{player.nombre}} <br>
+                                {{player.email}} <br>
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+
+                    <form #formPost="ngForm">
+                        <div class="form-group mx-sm-3">
+                            <select class="form-control" id="category" type="text" required name="category" [(ngModel)]="redaccionModel.idCategoria">
+                                <option disabled hidden [value]="''">CATEGORY</option>
+                                <option *ngFor="let cat of categoriaModel" [value]="cat.id">{{cat.nombre}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <select class="form-control" id="typePost" type="text" required name="typePost" [(ngModel)]="redaccionModel.tipoPost">
+                                <option disabled hidden [value]="''">TYPE POST</option>
+                                <option *ngFor="let t of arrayTipoPost" [value]="t.id">{{t.nombre}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <input id="title" type="text" placeholder="TITLE" [required]="redaccionModel.tipoPost!='4'" name="title" [(ngModel)]="redaccionModel.tituloPost" class="form-control" tmFocus>
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <textarea rows="3" id="description" placeholder="DESCRIPTION" type="text" [required]="redaccionModel.tipoPost!='4'" name="description" [(ngModel)]="redaccionModel.descripcion" class="form-control"></textarea>
+                        </div>
+
+
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="text-center pt-2">
+                                        <img src="assets/images/noimg.png" class="img-responsive" alt="...">
+                                    </div>
+                                    <br>
+                                    <label for="file-upload" class="custom-file-uploades color-text-primary">
+                                        <i class="fa fa-cloud-upload"></i> Select a file to upload
+                                    </label>
+                                    <input id="file-upload" type="file" (change)="onchangueFiles($event, false);"/>
+                                </div>
+                                <div class="col-6">
+                                    <label class="media-dimension">* The recommended resolution of video is 1280×720 or higher</label>
+                                    <label class="media-dimension">* The recommended resolution of image is 900×689 or higher</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="col-md-6">
+                    <br>
+                    <h2 class="color-text-primary pb-2">PREVIEWS</h2>
+                    <div class="w-100 container-preview shadow">
+
+                        <div class="scroll">
+                            <div *ngFor="let item of arrayElementos; let i = index"><br>
+                                <div class="alert alert-dismissible">
+                                    <div class="row col-12 color-borde-preview box-item">
+                                        <i class="close close-class fa fa-times" data-dismiss="alert" (click)="deleteElement(i)"></i>
+                                        <div class="col-6 py-2 px-0 text-center">
+                                            <div class="h-100" *ngIf="item.tipo  == 'image/png' || item.tipo =='image/jpeg' "><img [src]="item.archivo" class="imagen-element"/>
+                                            </div>
+                                            <div class="form-group text-left" *ngIf="item.tipo =='video/mp4' " #test>
+                                                <video id="video{{i}}" class="video-element" preload="metadata" [src]="item.archivo" controls [poster]="(item?.cover?.archivo == null)? null:item?.cover?.archivo"></video>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mt-1">
+                                            <div class="form-group text-left mt-3 pl-1">
+                                                <label><strong>Name:</strong> Image {{i + 1}} </label><br>
+                                                <label><strong>Status:</strong> upload</label><br>
+                                                <label><strong>Size:</strong>  {{item.tamano}}</label><br>
+                                                <label *ngIf="item.tipo =='video/mp4' && !item.cover.isUpdate" style="font-size:15px; color:#FAAA14;" (click)="addCoverImage(i, false)">
+                                                    <i class="fa fa-edit" style="font-size:15px; color:#FAAA14;"></i>Custom Cover</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <label style="cursor: pointer" (click)="removeDateTime()" ngbTooltip="Remove date" *ngIf="redaccionModel.publicar=='2'" class="pl-1">PUBLICACTION SCHEDULED FOR: <br> <a class="color-text-primary">{{redaccionModel.fechaPublicar}}</a></label>
+
+                    <div class="form-group mx-sm-3 text-right pt-md-3">
+                        <button type="button" style="right: 63%" class="btn-program-modal btn-mini mr-2 color-primary" (click)="openProgram()">
+                            PROGRAM <i class="fa fa-calendar"></i>
+                        </button>
+                        <button type="button" class="btn-cancel btn-mini mr-2" [disabled]="isRequesting" (click)="closeForm()">
+                            CANCEL <i class="fa fa-remove"></i>
+                        </button>
+                        <button type="button" class="btn-done btn-mini" [disabled]="isRequesting" (click)="savePost()">
+                            DONE <i class="fa fa-save"></i>
+                        </button>
+                        <app-spinner [isRunning]="isRequesting"></app-spinner>
+                    </div>
+                </div>
+            </div>
+        </modal-body>
+    </modal>
+
+    <modal backdrop="static" #modalCoverImage>
+        <modal-body class="color-background color-borde-cover mt-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="alert color-text">
+                        <strong>
+                            <span class="fa-stack fa-xs fa-xs" style="color:#1faded !important;">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </strong>
+                        <strong>Custom cover:</strong>
+                        Capture frame of video or upload image for cover image of video.
+                    </div>
+                </div>
+                <div class="col-6" style="background-color:#dedede;">
+                    <div align="center" class="embed-responsive embed-responsive-16by9">
+                        <video (play)="playStop(true, true)" (pause)="playStop(true, false)" *ngIf="this.archivoAux!= null" id="video-cover" #videocover muted [src]="this.archivoAux" style="margin-top:8px;" controls controlsList="nodownload nofullscreen noremoteplayback"></video>
+                    </div>
+
+                    <br/>
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="form-inline">
+                                <div class="form-group mb-2">
+                                    <button type="button" class="btn btn-danger btn-sm" style="width:80px; margin-top:-43px" (click)="playStop(false);" #btncover>
+                                        <span></span> <i class="{{btnclass}}"></i></button>
+                                    <br/>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <button type="button" class="btn btn-primary btn-sm" style="width:100px; margin-top:-43px; margin-left:2px" (click)="capturaFrame($event.target);" #btncover>
+                                        <span>Capture</span> <i class="fa fa-camera"></i>
+                                    </button>
+                                    <br/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="file-upload2" class="custom-file-uploades color-text">
+                                <i class="fa fa-cloud-upload"></i> Select image to upload cover
+                            </label>
+                            <input id="file-upload2" type="file" accept="image/x-png,image/jpeg" (change)="uploadCoverImage($event);"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" text-center style="background-color:#30353A">
+                    <label style="color: #f2f2f2">Cover image of video</label>
+                    <div class="row" style="margin-top:50px;">
+                        <div id="output" class="container-cover">
+                            <div *ngIf="dataURL != null"><img style="width: 99%;height: auto;" [src]="dataURL"/></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button (click)="saveModalCover()" class="btn btn-success btn-sm float-right" [disabled]="(coverAux!= null)? false: true"> add cover <i class="fa fa-plus"></i></button>
+            <button (click)="closeModalCover()" class="btn btn-warning btn-sm float-right mr-2">skip custom step <i class="fa fa-share-square"></i></button>
+            <br>
+        </modal-body>
+    </modal>
+
+    <modal class="time-content" backdrop="static" #modalDateTime>
+        <modal-body class="color-background shadow">
+            <h5 class="color-text">Please select the date and time</h5>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <my-date-picker name="fechaPublicar" [options]="myDatePickerOptions" [(ngModel)]="dataPicker" (ngModelChange)="checkDate()" required></my-date-picker>
+                    <div class="form-group">
+                        <ngb-timepicker [(ngModel)]="time" [meridian]="true" (ngModelChange)="checkDate()"></ngb-timepicker>
+                        <div class="alert-text" role="alert" *ngIf="isAlertDateTime">
+                            <i class="fa fa-exclamation-triangle"></i> {{mensajeErrorDateTime}}.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <br>
+                    <button type="button" class="btn btn-success btn-sm float-right" (click)="addDateTime()">add date and time <i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-danger btn-sm float-right mr-2" (click)="closeDateTime()">cancel <i class="fa fa-remove"></i></button>
+                </div>
+            </div>
+
+        </modal-body>
+    </modal>
+
+    <modal class="modal-confirmation" backdrop="static" #confirmation>
+        <modal-body class="color-background color-borde-modal pt-3">
+            <div class="row">
+                <div class="col-md-10 offset-md-1 text-center">
+                    <i class="fa fa-trash color-text-secundary" style="font-size:60px;"></i><br>
+                    <label style="font-size:18px; color: black; font-weight: bold;">Important</label><br>
+                    <label style="font-size:12px; color: #6D6E6E;">{{successMensaje}}</label><br><br>
+                    <button type="button" class="btn-cancel" (click)="cancelDeletePost()">CANCEL</button>
+                    <button type="button" class="btn-done" (click)="confirmationDeletePost()">DONE</button>
+                </div>
+            </div>
+        </modal-body>
+    </modal>
+</div>

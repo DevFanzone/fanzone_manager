@@ -1,0 +1,17 @@
+.circular-landscape img {
+    margin-left: -5px !important;
+    margin-top: 0px !important;
+    width: 8rem !important;
+}
+
+.search-content {
+    right: 13%;
+    padding-top: 60px;
+}
+
+@media (max-width: 745px) {
+    .table {
+        overflow: auto;
+        display: block;
+    }
+}

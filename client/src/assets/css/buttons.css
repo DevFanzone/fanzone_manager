@@ -1,0 +1,154 @@
+button:focus {
+    outline: none !important;
+    box-shadow: 0 0 3pt 2pt #0294ff !important;
+}
+
+.btn-done {
+    padding-top: 2px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #4CAF50;
+    width: 6rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border: transparent;
+    box-shadow: 1px 1px 5px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-done:hover {
+    box-shadow: 1px 1px 8px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-cancel {
+    padding-top: 2px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #E8272A;
+    width: 6rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border: transparent;
+    box-shadow: 1px 1px 5px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-cancel:hover {
+    box-shadow: 1px 1px 8px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-add {
+    padding-top: 2px;
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    z-index: 100;
+    color: #fff;
+    width: 10rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border: transparent;
+    box-shadow: 1px 1px 5px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-add:hover {
+    box-shadow: 1px 1px 9px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-new {
+    padding-top: 2px;
+    cursor: pointer;
+    background-color: #4baf50;
+    position: absolute;
+    right: 5%;
+    z-index: 100;
+    color: #fff;
+    width: 6rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border: transparent;
+    box-shadow: 1px 1px 5px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-new:hover {
+    box-shadow: 1px 1px 9px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-program {
+    padding-top: 2px;
+    cursor: pointer;
+    position: absolute;
+    right: 16%;
+    z-index: 100;
+    color: #fff;
+    width: 11rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border: transparent;
+    box-shadow: 1px 1px 5px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-program:hover {
+    box-shadow: 1px 1px 9px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-program-modal {
+    padding-top: 2px;
+    cursor: pointer;
+    position: absolute;
+    right: 16%;
+    z-index: 100;
+    color: #fff;
+    width: 11rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border: transparent;
+    box-shadow: 1px 1px 5px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-program-modal:hover {
+    box-shadow: 1px 1px 9px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-add-link {
+    cursor: pointer;
+    background-color: #4baf50;
+    z-index: 100;
+    color: #fff;
+    width: 3rem;
+    height: 1.5rem;
+    vertical-align: sub;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border: transparent;
+    box-shadow: 1px 1px 5px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-add-link:hover {
+    box-shadow: 1px 1px 9px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-back {
+    padding-top: 2px;
+    cursor: pointer;
+    background-color: #D8D8D8;
+    position: absolute;
+    z-index: 100;
+    color: #4C4C4C;
+    width: 5rem;
+    height: 1.7rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border: transparent;
+    margin-top: -1.2rem;
+    left: 0;
+    box-shadow: 1px 1px 5px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-back:hover {
+    box-shadow: 1px 1px 8px 0 rgba(45, 54, 65, 0.75);
+}

@@ -1,0 +1,124 @@
+---
+grails:
+    mail:
+        host: 'smtp.gmail.com'
+        port: 465
+        username: 'dev@tropicaldf.com.mx' #configurar correo
+        password: 'ParaDev1' #configurar contraseña
+        props:
+            mail.smtp.auth: 'true'
+            mail.smtp.socketFactory.port: '465'
+            mail.smtp.socketFactory.class: 'javax.net.ssl.SSLSocketFactory'
+            mail.smtp.socketFactory.fallback: 'false'
+
+    profile: angular
+    codegen:
+        defaultPackage: fanzonemanager
+    spring:
+        transactionManagement:
+            proxies: false
+    gorm:
+        reactor:
+            # Whether to translate GORM events into Reactor events
+            # Disabled by default for performance reasons
+            events: false
+info:
+    app:
+        name: '@info.app.name@'
+        version: '@info.app.version@'
+        grailsVersion: '@info.app.grailsVersion@'
+spring:
+    main:
+        banner-mode: "off"
+    groovy:
+        template:
+            check-template-location: false
+
+# Spring Actuator Endpoints are Disabled by Default
+endpoints:
+    enabled: false
+    jmx:
+        enabled: true
+
+---
+grails:
+    mime:
+        disable:
+            accept:
+                header:
+                    userAgents:
+                        - Gecko
+                        - WebKit
+                        - Presto
+                        - Trident
+        types:
+            json:
+              - application/json
+              - text/json   
+            hal:
+              - application/hal+json
+              - application/hal+xml  
+            xml:
+              - text/xml
+              - application/xml                                 
+            atom: application/atom+xml
+            css: text/css
+            csv: text/csv
+            js: text/javascript
+            rss: application/rss+xml
+            text: text/plain
+            all: '*/*'            
+    urlmapping:
+        cache:
+            maxsize: 1000
+    controllers:
+        defaultScope: singleton
+        upload:
+            maxFileSize: 9999999999
+            maxRequestSize: 9999999999
+    converters:
+        encoding: UTF-8
+
+---
+grails:
+    cors:
+        enabled: true
+---
+hibernate:
+    cache:
+        queries: false
+        use_second_level_cache: false
+        use_query_cache: false
+dataSource:
+    pooled: true
+    jmxExport: true
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+
+---
+environments:
+    development:
+       grails:
+           mongodb:
+               host: "127.0.0.1"
+               port: 27017
+               username: ""
+               password: ""
+               databaseName: "fanzonManger"
+    test:
+        grails:
+            mongodb:
+                host: "localhost"
+                port: 27017
+                username: "blah"
+                password: "blah"
+                databaseName: "foo"
+    production:
+        grails:
+            mongodb:
+                host: "104.197.219.247"
+                port: 27017
+                username: "fanzone"
+                password: "f4nz0n3-us3r-2019"
+                databaseName: "fanzonManager"

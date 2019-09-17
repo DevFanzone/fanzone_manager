@@ -1,0 +1,136 @@
+<br>
+<div class="container-fluid">
+    <loader [loaderActive]="loaderActive"></loader>
+
+    <button *ngIf="role == 'ROLE_ADMINISTRADOR'" (click)="back()" class="ml-2 ml-md-4 btn-back"><i class="fa fa-arrow-left"></i> Back</button>
+    <div class="search-content">
+        <input id="search" type="search" placeholder="Filter" name="search" [(ngModel)]="search" class="form-control color-background search">
+        <span class="fa fa-search search-icon"></span>
+    </div>
+    <button *ngIf="role == 'ROLE_ADMINISTRADOR'" (click)="openForm()" class="btn-add color-primary">Add Player <i class="fa fa-plus-square"></i></button>
+
+    <div class="row">
+        <div class="col-12 px-0 px-md-5 pt-3">
+            <h1 class="title-player title-mobile color-text-primary">Players</h1>
+            <br>
+            <div class="card py-5 pt-lg-2">
+                <div class="card-body">
+                    <div class="row pb-3">
+                        <div *ngFor="let player of data  | orderBy:'estatus' : false | filter:search | paginate: { itemsPerPage: 8, currentPage: p }" class="px-1 px-sm-3 col-6 col-md-4 col-lg-3">
+                            <div placement="bottom" [ngbTooltip]="player.estatus == '0'?'':'Disabled'" (click)="role == 'ROLE_ADMINISTRADOR' ? openForm(player):null" [ngStyle]="role != 'ROLE_ADMINISTRADOR' ? {'cursor': 'default'}:{}" class="card container-player color-background m-auto" [ngClass]="player.estatus == '0'?'color-borde-primary':'color-borde-secundary'">
+                                <i *ngIf="role == 'ROLE_ADMINISTRADOR'" class="fa fa-edit edit-icon color-text-primary"></i>
+                                <div class="circular-landscape mx-auto my-2">
+                                    <img class="card-img-top" src="{{player.foto}}" onError="this.src='assets/images/noimg-player.png';" alt="Card image">
+                                </div>
+                                <div class="text-center pb-2">
+                                    <h5 class="card-title color-text text-ellipsis">{{player.nombre}}</h5>
+                                    <p class="card-text color-text text-ellipsis">
+                                        {{player.telefono}} <br>
+                                        {{player.email}} <br>
+                                        <label class="color-text-secundary text-ellipsis">*CM: {{player.manager}}</label>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button (click)="goToPlayer(player)" class="btn-enter color-secundary mt-2 mb-3">
+                                    Enter
+                                </button>
+                            </div>
+                        </div>
+                        <div class="pl-3" *ngIf="data.length < 1">no records...</div>
+
+                        <div class="text-right w-100 m-auto p-4 pr-5">
+                            <pagination-controls autoHide="true" responsive="true" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <modal backdrop="static" #modalRegister>
+        <modal-header class="color-primary" [show-close]="false">
+            <h4 class="modal-title">{{atletaModel.id != '0' && atletaModel.id != '' ? 'UPDATE PLAYER' : 'NEW PLAYER'}}</h4>
+
+            <div *ngIf="atletaModel.id != '0' && atletaModel.id != ''" class="toggle-zoom">
+                <input type="checkbox" class="toggle" id="toggle" [checked]="atletaModel.estatus == '0'" (change)="statusAtleta()"/>
+                <label for="toggle">
+                    <span class="on">ENABLED</span>
+                    <span class="off">DISABLED</span>
+                </label>
+            </div>
+        </modal-header>
+        <modal-body class="color-background form-body">
+            <div class="row">
+                <div class="col-md-9 offset-md-2">
+                    <div>
+                        <div class="text-center">
+                            <div class="circular-landscape mx-auto mt-2">
+                                <img *ngIf="!isEditFoto" class="card-img-top" src="assets/images/noimg-player.png" onError="this.src='assets/images/noimg-player.png';" alt="Card image">
+                                <img *ngIf="isEditFoto" class="card-img-top" src="{{atletaModel.foto}}" onError="this.src='assets/images/noimg-player.png';" alt="Card image">
+                            </div>
+                        </div>
+                        <label class="media-dimension w-100">* The recommended resolution is 900×689 or higher</label>
+                        <label for="file-upload" class="custom-file-uploades color-text-primary">
+                            <i class="fa fa-cloud-upload"></i> Select a file to upload
+                        </label>
+                        <input #filePost id="file-upload" type="file" (change)="onchangueFile($event);"/>
+                    </div>
+                    <br>
+                    <form #formPlayer="ngForm">
+                        <div class="form-group mx-sm-3">
+                            <label for="cm">COMMUNITY MANAGER</label>
+                            <select class="form-control" id="cm" type="text" required name="cm" (change)="searchUsername()" [(ngModel)]="atletaModel.idManager">
+                                <option *ngFor="let c of cms" [value]="c.id">{{c.username}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="nombre">NAME</label>
+                            <input id="nombre" type="text" required name="nombre" [(ngModel)]="atletaModel.nombre" class="form-control" tmFocus>
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="sexo">GENDER</label>
+                            <select class="form-control" id="sexo" type="text" required name="sexo" [(ngModel)]="atletaModel.sexo">
+                                <option *ngFor="let sex of arraySexo" [value]="sex.id">{{sex.nombre}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="telefono">CONTACT NUMBER</label>
+                            <input id="telefono" type="tel" pattern="^[0-9]*$" maxlength="13" required name="telefono" [(ngModel)]="atletaModel.telefono" class="form-control">
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="email">E-MAIL</label>
+                            <input id="email" type="text" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required name="email"
+                                   [(ngModel)]="atletaModel.email" class="form-control">
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="sitioWeb">WEBSITE</label>
+                            <input id="sitioWeb" type="text" required name="sitioWeb" [(ngModel)]="atletaModel.sitioWeb" class="form-control">
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="ocupacion">OCCUPATION</label>
+                            <input id="ocupacion" type="text" required name="ocupacion" [(ngModel)]="atletaModel.ocupacion" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group mx-sm-3 text-right">
+                            <button type="button" class="btn-cancel mr-2" [disabled]="isRequesting" (click)="closeForm()">
+                                CANCEL <i class="fa fa-remove"></i>
+                            </button>
+                            <button type="button" class="btn-done mr-4" [disabled]="isRequesting" (click)="saveUsuario()">
+                                DONE <i class="fa fa-save"></i>
+                            </button>
+                            <app-spinner [isRunning]="isRequesting"></app-spinner>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </modal-body>
+    </modal>
+</div>

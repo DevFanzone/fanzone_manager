@@ -1,0 +1,108 @@
+<br>
+<div class="container-fluid">
+    <loader [loaderActive]="loaderActive"></loader>
+    <button (click)="back()" class="ml-2 ml-md-4 btn-back"><i class="fa fa-arrow-left"></i> Back</button>
+    <div class="search-content">
+        <input id="search" type="search" placeholder="Filter" name="search" [(ngModel)]="search" class="form-control color-background search">
+        <span class="fa fa-search search-icon"></span>
+    </div>
+    <br>
+    <h1 class="color-text-primary title-mobile">Users</h1>
+
+    <br><br><br>
+    <table class="table color-borde-table color-background-table w-99 w-100 w-lg-75 m-auto">
+        <tbody>
+        <tr>
+            <th class="text-center color-borde-table color-text-primary" style="width: 25%">Name</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 25%">Username</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 15%">Account</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 10%">Status</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 25%; min-width: 6rem;">Action</th>
+        </tr>
+        <tr *ngFor="let user of data  | orderBy:'status' : true | filter:search | paginate: { itemsPerPage: 4, currentPage: p }">
+            <td class="text-center color-borde-table color-text">{{user.nombre}}</td>
+            <td class="text-center color-borde-table color-text">{{user.username}}</td>
+            <td class="text-center color-borde-table color-text">{{user.roleNombre}}</td>
+            <td class="text-center color-borde-table">
+                <i *ngIf="user.status==true " class="fa fa-circle status-class"></i>
+                <i *ngIf="user.status==false " class="fa fa-circle status-class-error"></i>
+            </td>
+            <td class="text-center color-borde-table color-text">
+                <i (click)="openForm(user)" class="fa fa-pencil" style="font-size:20px;cursor: pointer;" placement="top"></i>
+            </td>
+        </tr>
+
+        <tr *ngIf="data && data.length <= 0">
+            <td colspan="5">no records...</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-right w-75 m-auto">
+        <pagination-controls autoHide="true" responsive="true" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <modal backdrop="static" #modalRegister>
+        <modal-header class="color-primary" [show-close]="false">
+            <h4 class="modal-title">{{usuarioModel.id ? 'UPDATE USER' : 'NEW USER'}}</h4>
+
+            <div class="toggle-zoom" *ngIf="usuarioModel.id">
+                <input type="checkbox" class="toggle" id="toggle" [checked]="usuarioModel.status == true" (change)="statusUser()"/>
+                <label for="toggle">
+                    <span class="on">ENABLED</span>
+                    <span class="off">DISABLED</span>
+                </label>
+            </div>
+        </modal-header>
+        <modal-body class="color-background form-body pt-3">
+            <div class="row">
+                <div class="col-md-9 offset-md-2">
+                    <div>
+                        <div class="text-center">
+                            <div class="circular-landscape mx-auto mt-2">
+                                <img class="card-img-top" src="{{usuarioModel.foto_perfil}}">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <form #formUser="ngForm">
+
+                        <div class="form-group mx-sm-3">
+                            <label for="account">ACCOUNT</label>
+                            <select class="form-control" id="account" type="text" required name="account" [(ngModel)]="usuarioModel.role">
+                                <option *ngFor="let r of roles" [value]="r.id">{{r.authority}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="nombre">NAME</label>
+                            <input id="nombre" type="text" required name="nombre" [(ngModel)]="usuarioModel.nombre" class="form-control" tmFocus>
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="apellidos">USERNAME</label>
+                            <input id="apellidos" type="text" required name="apellidos" [(ngModel)]="usuarioModel.username" class="form-control">
+                        </div>
+
+
+                        <br>
+                        <div class="form-group mx-sm-3 text-right">
+                            <button type="button" class="btn-cancel mr-2" [disabled]="isRequesting" (click)="closeForm()">
+                                CANCEL <i class="fa fa-remove"></i>
+                            </button>
+                            <button type="button" class="btn-done mr-4" [disabled]="isRequesting" (click)="updateAccount()">
+                                DONE <i class="fa fa-save"></i>
+                            </button>
+                            <app-spinner [isRunning]="isRequesting"></app-spinner>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </modal-body>
+    </modal>
+</div>

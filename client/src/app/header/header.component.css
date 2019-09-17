@@ -1,0 +1,54 @@
+.header-class {
+    display: flex;
+    height: 6rem;
+    box-shadow: 0 0.2rem 1rem 0 rgba(45, 54, 65, 0.75);
+    border-radius: 0 0 2rem 2rem;
+}
+
+.title-class {
+    cursor: pointer;
+    font-size: 3.3rem;
+    padding-left: 2rem;
+    padding-top: 1rem;
+}
+
+.subtitle-class {
+    font-size: 1.6rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    width: 17rem;
+}
+
+.logout-class {
+    font-size: 60px;
+    padding-top: 0.9rem;
+    padding-left: 1rem;
+    cursor: pointer;
+}
+
+.size-content-text {
+    min-width: 398px;
+}
+
+.fa {
+    font-family: "FontAwesome", fontawesome-webfont;
+}
+
+.display {
+    display: block;
+}
+
+@media (max-width: 775px) {
+    .nav-link {
+        right: 2%;
+        position: absolute;
+    }
+
+    .size-content-text {
+        min-width: 200px;
+    }
+
+    .display {
+        display: none;
+    }
+}

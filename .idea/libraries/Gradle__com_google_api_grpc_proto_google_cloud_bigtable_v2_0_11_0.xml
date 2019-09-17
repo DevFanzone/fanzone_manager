@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.api.grpc:proto-google-cloud-bigtable-v2:0.11.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-cloud-bigtable-v2/0.11.0/4d607b3e82241db03e1df3bf804940395b665e9d/proto-google-cloud-bigtable-v2-0.11.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-cloud-bigtable-v2/0.11.0/5b3beb5a99e1909a421646b86470e724b66e0902/proto-google-cloud-bigtable-v2-0.11.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

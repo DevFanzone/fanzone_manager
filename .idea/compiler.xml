@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="fanzone_manager.server.main" target="1.8" />
+      <module name="fanzone_manager.server.test" target="1.8" />
+      <module name="fanzonemanager.server.main" target="1.8" />
+      <module name="fanzonemanager.server.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,17 @@
+<div class="color-background header-class">
+    <div style="width: 70%">
+        <h1 class="title-class color-text pr-2" (click)="goToMain()">FanZone</h1>
+    </div>
+    <div class="d-flex size-content-text">
+        <div class="color-primary barPrimary-class"></div>
+        <div class="color-secundary barSecundary-class"></div>
+        <label class="subtitle-class color-text display">
+            <i *ngIf="status && role" class="fa fa-circle status-class"></i>
+            Content Manager
+        </label>
+
+        <a *ngIf="status && role" class="nav-link">
+            <i (click)="logout()" class="fa fa-sign-out color-text logout-class"></i>
+        </a>
+    </div>
+</div>

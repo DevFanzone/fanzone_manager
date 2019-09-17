@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.api.grpc:proto-google-cloud-error-reporting-v1beta1:0.11.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-cloud-error-reporting-v1beta1/0.11.0/497cf3c6e479b7b6b979aa72e2fe3c8b74759499/proto-google-cloud-error-reporting-v1beta1-0.11.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-cloud-error-reporting-v1beta1/0.11.0/8b202efe124681d0e33cac6ab9c7cc7a18a9e654/proto-google-cloud-error-reporting-v1beta1-0.11.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,134 @@
+.w-85 {
+    width: 85% !important;
+}
+
+.search-content {
+    right: 37%;
+}
+
+.container-preview {
+    height: 29rem;
+    background-color: white;
+    border-radius: 1rem;
+    padding-top: 3px;
+}
+
+.scroll {
+    overflow: auto;
+    overflow-x: hidden;
+    height: 98%;
+    margin-top: 3px;
+    width: 99%;
+}
+
+.time-content {
+    overflow: hidden;
+    width: 23rem;
+    margin: auto;
+}
+
+.alert-text {
+    font-size: 12px;
+    color: gray;
+}
+
+.time-content modal-body{
+    border-left: 5px solid #3045CF;
+}
+
+::ng-deep .mydp .selectorarrow {
+    zoom: 50% !important;
+}
+::ng-deep .mydp .daycell .datevalue,
+::ng-deep .mydp .weekdaytitle,
+::ng-deep .mydp .headerlabelbtn {
+    font-size: 1.1rem !important;
+}
+
+::ng-deep .mydp .headerbtncell {
+    padding: 10px;
+}
+
+::ng-deep .mydp .headertodaybtn {
+    zoom: 185%;
+    float: right;
+}
+
+::ng-deep .ngb-tp {
+    zoom: 75%;
+    float: right;
+}
+
+.imagen-element {
+    max-width: 10rem;
+    margin-bottom: auto;
+}
+
+.video-element {
+    height: 150px;
+    width: 180px;
+    padding-bottom: 15px;
+}
+
+.box-item {
+    margin-top: -1rem;
+    min-height: 174px;
+    padding: 0
+}
+
+.container-cover {
+    height: 149px;
+    width: 256px;
+    margin-left: 17px;
+    border: dotted 1px #ccc;
+    padding: 2px;
+}
+
+.close-class {
+    position: absolute;
+    margin-right: 0.5rem;
+    margin-top: 0.2rem;
+    z-index: 100;
+}
+
+.btn-mini {
+    font-size: 0.8rem !important;
+    width: 6.5rem !important;
+}
+
+.alert {
+    padding: 0.2rem 0.2rem;
+}
+
+select {
+    max-width: 16rem !important;
+}
+
+@media (max-width: 1050px) {
+    .table {
+        overflow: auto;
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .color-borde-right {
+        border-right: none !important;
+    }
+}
+
+@media (max-width: 1030px) {
+    .btn-program {
+        right: 3%;
+        margin-top: 2.5rem;
+    }
+
+    .btn-new {
+        right: 3%;
+    }
+
+    .search-content {
+        right: 26%;
+        max-width: 17rem;
+    }
+}

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.apis:google-api-services-dns:v1-rev66-1.23.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-dns/v1-rev66-1.23.0/ab3efcdc3fb0239382080029898c5ca3b91c98db/google-api-services-dns-v1-rev66-1.23.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-dns/v1-rev66-1.23.0/b901e73ede0aaa3b44afdd7fdb9f8d61c0b97f6d/google-api-services-dns-v1-rev66-1.23.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

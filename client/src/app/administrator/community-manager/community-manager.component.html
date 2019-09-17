@@ -1,0 +1,111 @@
+<br>
+<div class="container-fluid">
+    <loader [loaderActive]="loaderActive"></loader>
+    <button (click)="back()" class="ml-2 ml-md-4 btn-back"><i class="fa fa-arrow-left"></i> Back</button>
+    <br>
+    <div class="search-content">
+        <input id="search" type="search" placeholder="Filter" name="search" [(ngModel)]="search" class="form-control color-background search">
+        <span class="fa fa-search search-icon"></span>
+    </div>
+    <button (click)="openForm()" class="btn-add color-primary">Add Community <i class="fa fa-plus-square"></i>
+    </button>
+    <h2 class="color-text-primary title-mobile w-50">Community Managers</h2>
+    <br><br><br>
+    <table class="table color-borde-table color-background-table w-99 w-100 w-lg-75 m-auto">
+        <tbody>
+        <tr>
+            <th class="text-center color-borde-table color-text-primary" style="width: 20%">Name</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 20%">Last Name</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 25%">Username</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 10%">Status</th>
+            <th class="text-center color-borde-table color-text-primary" style="width: 25%; min-width: 6rem;">Action</th>
+        </tr>
+        <tr *ngFor="let cm of data  | orderBy:'status' : true | filter:search | paginate: { itemsPerPage: 4, currentPage: p }">
+            <td class="text-center color-borde-table color-text">{{cm.nombre}}</td>
+            <td class="text-center color-borde-table color-text">{{cm.apellidos}}</td>
+            <td class="text-center color-borde-table color-text">{{cm.username}}</td>
+            <td class="text-center color-borde-table">
+                <i *ngIf="cm.status==true " class="fa fa-circle status-class"></i>
+                <i *ngIf="cm.status==false " class="fa fa-circle status-class-error"></i>
+            </td>
+            <td class="text-center color-borde-table color-text">
+                <i (click)="openForm(cm)" class="fa fa-pencil" style="font-size:20px;cursor: pointer;" placement="top"></i>
+            </td>
+        </tr>
+
+        <tr *ngIf="data && data.length <= 0">
+            <td colspan="5">no records...</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-right w-75 m-auto">
+        <pagination-controls autoHide="true" responsive="true" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <modal backdrop="static" #modalRegister>
+        <modal-header class="color-primary" [show-close]="false">
+            <h4 class="modal-title">{{usuarioModel.id ? 'UPDATE COMMUNITY MANAGER' : 'NEW COMMUNITY MANAGER'}}</h4>
+
+            <div *ngIf="usuarioModel.id" class="toggle-zoom">
+                <input type="checkbox" class="toggle" id="toggle" [checked]="usuarioModel.status == true" (change)="statusCm()"/>
+                <label for="toggle">
+                    <span class="on">ENABLED</span>
+                    <span class="off">DISABLED</span>
+                </label>
+            </div>
+        </modal-header>
+        <modal-body class="color-background form-body pt-3">
+            <div class="row">
+                <div class="col-md-9 offset-md-2">
+
+                    <form #formCm="ngForm">
+                        <div class="form-group mx-sm-3">
+                            <label for="nombre">NAME</label>
+                            <input id="nombre" type="text" required name="nombre" [(ngModel)]="usuarioModel.nombre" class="form-control" tmFocus>
+                        </div>
+
+
+                        <div class="form-group mx-sm-3">
+                            <label for="apellidos">LAST NAME</label>
+                            <input id="apellidos" type="text" required name="apellidos" [(ngModel)]="usuarioModel.apellidos" class="form-control">
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="telefono">PHONE</label>
+                            <input id="telefono" type="tel" pattern="^[0-9]*$" maxlength="13" required name="telefono" [(ngModel)]="usuarioModel.telefono" class="form-control">
+                        </div>
+
+                        <h5><span class="badge color-secundary ml-3">ACCESS  <i class="fa fa-key"></i></span></h5>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="username">E-MAIL</label>
+                            <input id="username" type="text" required name="username" [(ngModel)]="usuarioModel.username" class="form-control">
+                        </div>
+
+                        <div class="form-group mx-sm-3">
+                            <label for="password">PASSWORD</label>
+                            <input id="password" type="password" required name="password" [(ngModel)]="usuarioModel.password" class="form-control">
+                        </div>
+
+
+                        <br>
+                        <div class="form-group mx-sm-3 text-right">
+                            <button type="button" class="btn-cancel mr-2" [disabled]="isRequesting" (click)="closeForm()">
+                                CANCEL <i class="fa fa-remove"></i>
+                            </button>
+                            <button type="button" class="btn-done mr-4" [disabled]="isRequesting" (click)="saveCm()">
+                                DONE <i class="fa fa-save"></i>
+                            </button>
+                            <app-spinner [isRunning]="isRequesting"></app-spinner>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </modal-body>
+    </modal>
+</div>

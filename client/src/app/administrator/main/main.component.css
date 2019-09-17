@@ -1,0 +1,16 @@
+a {
+    cursor: pointer;
+    display: block;
+    width: 150px;
+    height: 10rem;
+    margin: auto;
+}
+
+a:hover {
+    box-shadow: 0rem 0.5rem 0.5rem -0.5rem rgba(45, 54, 65, 0.75);
+}
+
+.icon-action {
+    text-align: center;
+    font-size: 5rem;
+}
