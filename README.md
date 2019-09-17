@@ -1,2 +1,1 @@
-# Fanzone
 # fanzone_manager
