@@ -363,35 +363,6 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-mat-datepicker@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/angular-mat-datepicker/-/angular-mat-datepicker-0.0.2.tgz#e943174f9275e8f8b9dff3d7e2c86c40364878a5"
-  dependencies:
-    moment "^2.17.1"
-    rxjs "5.0.0-beta.12"
-
-angular-spinners@^5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/angular-spinners/-/angular-spinners-5.0.5.tgz#d5f83ef3dcc97908460857eb6333cff83b31452c"
-  dependencies:
-    "@angular/common" "^4.2.4"
-    "@angular/core" "^4.2.4"
-    reflect-metadata "^0.1.10"
-    rxjs "^5.4.1"
-    zone.js "^0.8.12"
-
-angular2-datatable@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/angular2-datatable/-/angular2-datatable-0.6.0.tgz#ca008f74087f0cb87da5709ed2f2d1d061772632"
-  dependencies:
-    lodash "^4.0.0"
-
-angular2-loaders-css@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/angular2-loaders-css/-/angular2-loaders-css-2.0.1.tgz#da84a486455c5ee00a1f6c5ce17bb3ceb62a9106"
-  dependencies:
-    loaders.css "^0.1.2"
-
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -847,26 +818,12 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap-datepicker@1.7.0-RC1:
-  version "1.7.0-RC1"
-  resolved "https://registry.yarnpkg.com/bootstrap-datepicker/-/bootstrap-datepicker-1.7.0-RC1.tgz#07388d8e5e8ac6dab61052cd974b153e925c0eb9"
-  dependencies:
-    jquery ">=1.7.1 <4.0.0"
-
-bootstrap-timepicker@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/bootstrap-timepicker/-/bootstrap-timepicker-0.5.2.tgz#10ed9f2a2f0b8ccaefcde0fcf6a0738b919a3835"
-
 bootstrap@4.0.0-alpha.6:
   version "4.0.0-alpha.6"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.6.tgz#4f54dd33ac0deac3b28407bc2df7ec608869c9c8"
   dependencies:
     jquery ">=1.9.1"
     tether "^1.4.0"
-
-bootstrap@>=3.0.0:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
 
 boxen@^1.2.1:
   version "1.3.0"
@@ -1670,10 +1627,6 @@ dashdash@^1.12.0:
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
   dependencies:
     assert-plus "^1.0.0"
-
-date-fns@^1.29.0:
-  version "1.30.1"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -3731,7 +3684,7 @@ jasminewd2@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.1.0.tgz#da595275d1ae631de736ac0a7c7d85c9f73ef652"
 
-"jquery@2 - 3", "jquery@>=1.7.1 <4.0.0", jquery@>=2.2.1, jquery@^3.2.1:
+"jquery@2 - 3", jquery@^3.2.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
 
@@ -4022,10 +3975,6 @@ loader-utils@^0.2.16:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
     object-assign "^4.0.1"
-
-loaders.css@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/loaders.css/-/loaders.css-0.1.2.tgz#3a9fb43726c73334a38142af9d0629019b658743"
 
 locate-path@^2.0.0:
   version "2.0.0"
@@ -4357,7 +4306,7 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-moment@>=2.14.0, moment@^2.17.1, moment@^2.9.0:
+moment@>=2.14.0, moment@^2.9.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
 
@@ -4470,33 +4419,9 @@ ng2-bs4-modal@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/ng2-bs4-modal/-/ng2-bs4-modal-0.5.1.tgz#23101352cc70e7f44f46e071aa38da974f0b25b0"
 
-ng2-component-spinner@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/ng2-component-spinner/-/ng2-component-spinner-0.2.1.tgz#3fffac0fe8445f116fa236ff8ec2ba98f1aab915"
-
-ng2-datepicker@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/ng2-datepicker/-/ng2-datepicker-2.3.1.tgz#ffbc9b018126f6207371391aada04dd3ddaffbc4"
-  dependencies:
-    date-fns "^1.29.0"
-    ngx-slimscroll "^4.0.0"
-
-ng2-datetime@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/ng2-datetime/-/ng2-datetime-1.4.0.tgz#42948a554623f2cc12554ae9c75fc5dbd759aa85"
-  dependencies:
-    bootstrap ">=3.0.0"
-    bootstrap-datepicker "1.7.0-RC1"
-    bootstrap-timepicker "^0.5.2"
-    jquery ">=2.2.1"
-
 ng2-file-upload@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/ng2-file-upload/-/ng2-file-upload-1.3.0.tgz#d90f8f568f62383462175f8bdfa0096b131f277a"
-
-ng2-img-map@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/ng2-img-map/-/ng2-img-map-0.1.2.tgz#38d5f296287b094d99930e3a114b8bcbf4d4b720"
 
 ng2-order-pipe@^0.1.5:
   version "0.1.5"
@@ -4508,37 +4433,13 @@ ng2-search-filter@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/ng2-search-filter/-/ng2-search-filter-0.5.1.tgz#6d5f4e26bd2b2c8c8cc4aad658aabae6a33fb4af"
 
-ng2-spinning-preloader@^1.0.29:
-  version "1.0.29"
-  resolved "https://registry.yarnpkg.com/ng2-spinning-preloader/-/ng2-spinning-preloader-1.0.29.tgz#d4c1a5dedd26f12913716e71067fda75c7686c70"
-
-ngx-facebook@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/ngx-facebook/-/ngx-facebook-2.4.0.tgz#454141ce41118c1956d9db896c956f3891f8bbd7"
-
-ngx-image-cropper@^1.2.5:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/ngx-image-cropper/-/ngx-image-cropper-1.4.1.tgz#66d9bd05b588322407fe1f7b845aa80c7e8dac2e"
-  dependencies:
-    tslib "^1.9.0"
-
-ngx-loading@^1.0.9:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/ngx-loading/-/ngx-loading-1.0.15.tgz#80eb0420e32c93edc512922572b93a822034e6ec"
-
-ngx-modialog@^5.0.0:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-modialog/-/ngx-modialog-5.0.1.tgz#0b2bd9cdb2495019f88af9aa5856a848f2fafb56"
-  dependencies:
-    tslib "^1.9.0"
+ng2-toasty@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/ng2-toasty/-/ng2-toasty-4.0.3.tgz#ea78ef8d18757d41ebaba11bd9f90a543f58fd7a"
 
 ngx-pagination@^3.0.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/ngx-pagination/-/ngx-pagination-3.3.1.tgz#2dab7171c38c1b326571c4353a524d4614e28fa3"
-
-ngx-slimscroll@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-slimscroll/-/ngx-slimscroll-4.0.0.tgz#792d97cab45f6bdc91390691b080f672b1305f62"
 
 no-case@^2.2.0:
   version "2.3.2"
@@ -5528,10 +5429,6 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
-reflect-metadata@^0.1.10:
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
-
 reflect-metadata@^0.1.2:
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.10.tgz#b4f83704416acad89988c9b15635d47e03b9344a"
@@ -5756,23 +5653,17 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@5.0.0-beta.12:
-  version "5.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.0-beta.12.tgz#cdfde2d8c4639d20ae7794bff8fddf32da7ad337"
-  dependencies:
-    symbol-observable "^1.0.1"
-
-rxjs@^5.4.1, rxjs@^5.5.6:
-  version "5.5.12"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.12.tgz#6fa61b8a77c3d793dbaf270bee2f43f652d741cc"
-  dependencies:
-    symbol-observable "1.0.1"
-
 rxjs@^5.4.2:
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.4.3.tgz#0758cddee6033d68e0fd53676f0f3596ce3d483f"
   dependencies:
     symbol-observable "^1.0.1"
+
+rxjs@^5.5.6:
+  version "5.5.12"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.12.tgz#6fa61b8a77c3d793dbaf270bee2f43f652d741cc"
+  dependencies:
+    symbol-observable "1.0.1"
 
 safe-buffer@5.1.2:
   version "5.1.2"
@@ -6691,10 +6582,6 @@ tslib@^1.6.0, tslib@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.7.1.tgz#bc8004164691923a79fe8378bbeb3da2017538ec"
 
-tslib@^1.9.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
-
 tslint@~5.3.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.3.2.tgz#e56459fb095a7307f103b84052174f5e3bbef6ed"
@@ -7484,10 +7371,6 @@ yn@^2.0.0:
 zip-object@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/zip-object/-/zip-object-0.1.0.tgz#c1a0da04c88c837756e248680a03ff902ec3f53a"
-
-zone.js@^0.8.12:
-  version "0.8.29"
-  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.29.tgz#8dce92aa0dd553b50bc5bfbb90af9986ad845a12"
 
 zone.js@^0.8.14:
   version "0.8.17"
